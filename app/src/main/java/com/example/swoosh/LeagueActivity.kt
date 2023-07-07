@@ -6,10 +6,12 @@ import android.os.Bundle
 import android.view.View
 import android.widget.CompoundButton
 import android.widget.CompoundButton.OnCheckedChangeListener
+import android.widget.Toast
 import com.example.swoosh.databinding.ActivityLeagueBinding
 
 class LeagueActivity : BaseActivity() {
     private lateinit var binding: ActivityLeagueBinding
+    var selectedLeague = ""
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityLeagueBinding.inflate(layoutInflater)
@@ -43,8 +45,33 @@ class LeagueActivity : BaseActivity() {
 //        }
 
     }
-    fun leagueNextClicked(view:View){
-        val skillActivity = Intent(this, SkillActivity::class.java)
-        startActivity(skillActivity)
+
+    fun onMensClicked(view: View) {
+        binding.toggleBtnWomens.isChecked = false
+        binding.toggleBtnCoEd.isChecked = false
+        selectedLeague = "Mens"
+    }
+
+    fun onWomensClicked(view: View) {
+        binding.toggleBtnMens.isChecked = false
+        binding.toggleBtnCoEd.isChecked = false
+        selectedLeague = "Womens"
+    }
+
+    fun onCoEdClicked(view: View) {
+        binding.toggleBtnMens.isChecked = false
+        binding.toggleBtnWomens.isChecked = false
+        selectedLeague = "Co-ed"
+    }
+
+    fun leagueNextClicked(view: View) {
+        if(selectedLeague !=""){
+            val skillActivity = Intent(this, SkillActivity::class.java)
+            skillActivity.putExtra(EXTRA_LEAGUE,selectedLeague)
+            startActivity(skillActivity)
+        } else{
+            Toast.makeText(this, "Please select a league",Toast.LENGTH_SHORT).show()
+        }
+
     }
 }
