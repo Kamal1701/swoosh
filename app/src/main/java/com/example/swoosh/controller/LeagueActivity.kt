@@ -1,12 +1,10 @@
-package com.example.swoosh
+package com.example.swoosh.controller
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
-import android.widget.CompoundButton
-import android.widget.CompoundButton.OnCheckedChangeListener
 import android.widget.Toast
+import com.example.swoosh.utilities.EXTRA_LEAGUE
 import com.example.swoosh.databinding.ActivityLeagueBinding
 
 class LeagueActivity : BaseActivity() {
